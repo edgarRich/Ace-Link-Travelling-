@@ -1,0 +1,171 @@
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #C0C0C0; /* Silver background */
+}
+
+a {
+    text-decoration: none;
+    color: #FFD700; /* Gold links */
+}
+
+a:hover {
+    color: #FFA500; /* Darker gold on hover */
+}
+
+/* Navigation */
+.navbar {
+    background-color: #FFD700; /* Gold nav */
+    padding: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo h1 {
+    color: #333;
+    margin-left: 2rem;
+    font-size: 1.5rem;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    margin-right: 2rem;
+}
+
+.nav-menu li {
+    margin-left: 2rem;
+}
+
+.nav-menu a {
+    color: #333;
+    font-weight: 700;
+    transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+    color: #C0C0C0; /* Silver on hover */
+}
+
+/* Main Content */
+main {
+    min-height: 80vh;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h2 {
+    color: #FFD700; /* Gold headings */
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+/* Home Page */
+.hero {
+    text-align: center;
+    background: linear-gradient(to right, #C0C0C0, #FFD700);
+    padding: 4rem 2rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.hero-content h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.about-company ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.about-company li {
+    background: #FFD700;
+    color: #333;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border-radius: 5px;
+}
+
+/* Status Page */
+.status-form {
+    text-align: center;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.status-form form {
+    margin: 2rem 0;
+}
+
+.status-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.status-form input {
+    width: 100%;
+    max-width: 300px;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #C0C0C0;
+    border-radius: 5px;
+}
+
+/* Drivers Page */
+.drivers-list {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #C0C0C0;
+}
+
+th {
+    background: #FFD700;
+    color: #333;
+}
+
+.available {
+    color: green;
+    font-weight: bold;
+}
+
+.busy {
+    color: red;
+    font-weight: bold;
+}
+
+   
