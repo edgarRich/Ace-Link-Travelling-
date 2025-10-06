@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts - Ace Link Travelling and Transport Solutions</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Ace Link Travelling and Transport Solutions</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="status.html">Check Goods Status</a></li>
+                <li><a href="drivers.html">Drivers</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contacts</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content for Contacts Page -->
+    <main class="contact">
+        <section class="contact-info">
+            <h2>Contact Us</h2>
+            <p>We're here to help. Reach out for inquiries, support, or bookings.</p>
+            <div class="contact-details">
+                <div class="info">
+                    <h3>Office Address</h3>
+                    <p>123 Transport Ave, Logistics City, LC 12345</p>
+                    <h3>Phone</h3>
+                    <p>+1-800-ACE-LINK (223-5465)</p>
+                    <h3>Email</h3>
+                    <p>info@acelinktransport.com</p>
+                </div>
+                <div class="contact-form">
+                    <h3>Send a Message</h3>
+                    <form id="contactForm">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+                        
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                        
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                        
+                        <button type="submit" class="cta-button">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Ace Link Travelling and Transport Solutions. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will respond soon.'); // Mock submission
+            this.reset();
+        });
+    </script>
+</body>
+</html>
