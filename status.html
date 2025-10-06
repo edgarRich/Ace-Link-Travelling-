@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Goods Status - Ace Link Travelling and Transport Solutions</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script> <!-- Replace with actual Google Maps API key -->
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Ace Link Travelling and Transport Solutions</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="status.html">Check Goods Status</a></li>
+                <li><a href="drivers.html">Drivers</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contacts</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content for Status Page -->
+    <main class="status">
+        <section class="status-form">
+            <h2>Check Your Goods Status</h2>
+            <p>Enter the driver's phone number to get real-time updates on your delivery. Our driver app shares location data securely for accurate tracking.</p>
+            <form id="statusForm">
+                <label for="phone">Driver's Phone Number:</label>
+                <input type="tel" id="phone" name="phone" placeholder="+1-123-456-7890" required>
+                <button type="submit" class="cta-button">Check Status</button>
+            </form>
+            <div id="statusResult" style="display: none;">
+                <h3>Delivery Status</h3>
+                <p id="statusText">Loading...</p>
+                <div id="map" style="height: 300px; width: 100%; margin-top: 20px;"></div> <!-- Google Maps Placeholder -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Ace Link Travelling and Transport Solutions. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function initMap() {
+            // Initialize map when API loads (mock location for demo)
+            const map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 37.7749, lng: -122.4194 }, // Default: San Francisco
+                zoom: 12
+            });
+        }
+
+        document.getElementById('statusForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const phone = document.getElementById('phone').value;
+            // Mock API call - In real implementation, fetch from backend integrated with driver app
+            const mockStatus = {
+                status: 'In Transit',
+                location: { lat: 37.7749, lng: -122.4194 },
+                eta: 'ETA: 2 hours'
+            };
+            document.getElementById('statusText').innerHTML = `
+                <strong>Status:</strong> ${mockStatus.status}<br>
+                <strong>${mockStatus.eta}</strong><br>
+                Driver Phone: ${phone}
+            `;
+            document.getElementById('statusResult').style.display = 'block';
+            if (typeof google !== 'undefined' && google.maps) {
+                const map = new google.maps.Map(document.getElementById('map'), {
+                    center: mockStatus.location,
+                    zoom: 12
+                });
+                new google.maps.Marker({
+                    position: mockStatus.location,
+                    map: map,
+                    title: 'Driver Location'
+                });
+            }
+        });
+    </script>
+</body>
+</html>
