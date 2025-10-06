@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Check Goods Status - Ace Link Travelling and Transport Solutions</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- MapTiler CSS -->
+  <link
+    href="https://api.maptiler.com/maps/streets/style.css?key=e9wihje0WXGEM6Y3UfFp"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* Minimal inline styles for map and layout */
+    #map {
+      height: 400px;
+      width: 100%;
+      margin-top: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .status-form {
+      max-width: 400px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    input[type="tel"] {
+      width: 100%;
+      padding: 0.75rem;
+      margin: 1rem 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    button.cta-button {
+      background-color: #FFD700;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #333;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button.cta-button:hover {
+      background-color: #e6c200;
+    }
+    #statusResult {
+      margin-top: 1.5rem;
+      text-align: center;
+      font-size: 1rem;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <h1>Ace Link Travelling and Transport Solutions</h1>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="status.html" class="active">Check Goods Status</a></li>
+        <li><a href="drivers.html">Drivers</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contacts</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="status-form">
+      <h2>Check Your Goods Status</h2>
+      <p>
+        Enter the driver's phone number below. A WhatsApp message with the delivery destination will be prepared for you to send to the driver.
+      </p>
+      <form id="statusForm">
+        <label for="phone">Driver's Phone Number:</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="+1234567890"
+          pattern="^\+?\d{7,15}$"
+          title="Enter a valid phone number with country code"
+          required
+        />
+        <button type="submit" class="cta-button">Send WhatsApp Message</button>
+      </form>
+
+      <div id="statusResult" style="display:none;">
+        <h3>Delivery Destination Location</h3>
+        <p id="statusText">Below is the delivery destination location.</p>
+        <div id="map"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Ace Link Travelling and Transport Solutions. All rights reserved.</p>
+  </footer>
+
+  <!-- MapTiler JS -->
+  <script src="https://api.maptiler.com/maps/streets/maptiler-map.js?key=e9wihje0WXGEM6Y3UfFp"></script>
+
+  <script>
+    let map;
+    let marker;
+
+    function initMap() {
+      map = new maptiler.Map({
+        container: "map",
+        style: `https://api.maptiler.com/maps/streets/style.json?key=e9wihje0WXGEM6Y3UfFp`,
+        center: [destination.lng, destination.lat],
+        zoom: 14,
+      });
+
+      marker = new maptiler.Marker()
+        .setLngLat([destination.lng, destination.lat])
+        .addTo(map);
+    }
+
+    document.getElementById("statusForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const phoneInput = document.getElementById("phone");
+      const phone = phoneInput.value.trim();
+
+      // Validate phone number format
+      if (!phone.match(/^\+?\d{7,15}$/)) {
+        alert("Please enter a valid phone number with country code.");
+        return;
+      }
+
+      // Prepare WhatsApp message text
+      const message = encodeURIComponent(
+        `Hello, please deliver the goods to the following destination:\n${destination.address}\n` +
+        `Location: https://www.openstreetmap.org/?mlat=${destination.lat}&mlon=${destination.lng}#map=18/${destination.lat}/${destination.lng}`
+      );
+
+      // Format phone number for WhatsApp URL (remove + and non-digit chars)
+      const phoneForWhatsApp = phone.replace(/\D/g, "");
+
+      // Construct WhatsApp URL
+      const whatsappUrl = `https://wa.me/${phoneForWhatsApp}?text=${message}`;
+
+      // Open WhatsApp link in new tab/window for client to send message
+      window.open(whatsappUrl, "_blank");
+
+      // Show the destination location on the map
+      document.getElementById("statusResult").style.display = "block";
+      initMap();
+    });
+  </script>
+</body>
+</html>
